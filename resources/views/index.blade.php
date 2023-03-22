@@ -10,7 +10,7 @@
   <body>
 
     <h1>Meus Repositorios!</h1>
-    <input type="text">Nome do usuario </input>
+    
     <table id="myForm">
     <thead>
     <tr>
