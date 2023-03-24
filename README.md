@@ -5,5 +5,5 @@
 
 ## How to work
 - cd api_github
-- Modificar o usuario em controlador GetRepositoryController -> $response = http::get('https://api.github.com/users/("colocar usuario")/repos');
+- colocar API da github no .env GITHUB_TOKEN=("apitoken do github")
 - php artisan serve 

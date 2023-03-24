@@ -18,4 +18,6 @@ use App\Http\Controllers\Api\GetRepositoryController;
 //     return view('index');
 // });
 
-Route::get('/', [GetRepositoryController::class, 'index']);
+// Route::get('/', [GetRepositoryController::class, 'index']);
+
+Route::get('/', [GetRepositoryController::class, 'index'])->name('repositories.index');

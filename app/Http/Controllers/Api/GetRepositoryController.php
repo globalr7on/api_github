@@ -16,24 +16,60 @@ class GetRepositoryController extends Controller
      */
     public function index(Request $request)
     {
-        // withBasicAuth('globalr7on@gmail.com', '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')->
-        $response = http::get('https://api.github.com/users/globalr7on/repos');
-     
-        // dd($response->json());
-        $result=$response->json();
-
-        $repositories=[];
         
-        for($i = 0; $i < count($result); ++$i) {
-            $miarray=array(
-                "name" => $result[$i]['name'],
-                "url"  => $result[$i]['url'],
-                "commit"  => $result[$i]['pushed_at'],
-                "archived"  => $result[$i]['archived']
-            );
-            array_push($repositories, $miarray);
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . env('GITHUB_TOKEN'),
+        ])->get('https://api.github.com/user/repos');
+
+        $repositories = collect($response->json())->filter(function ($repository) {
+            return !$repository['fork'];
+        })->toArray();
+
+        $filter = $request->input('filter');
+        $search = $request->input('search');
+
+        if ($filter) {
+            switch ($filter) {
+                case 'archived':
+                    $repositories = collect($repositories)->filter(function ($repository) {
+                        return $repository['archived'];
+                    })->toArray();
+                    break;
+                case 'not_archived':
+                    $repositories = collect($repositories)->filter(function ($repository) {
+                        return !$repository['archived'];
+                    })->toArray();
+                    break;
+            }
         }
-       
-        return view('index',['repositories'=>$repositories]);
+
+        if ($search) {
+            $repositories = collect($repositories)->filter(function ($repository) use ($search) {
+                return stripos($repository['name'], $search) !== false;
+            })->toArray();
+        }
+
+        $sort = $request->input('sort');
+
+        if ($sort) {
+            switch ($sort) {
+                case 'name_asc':
+                    $repositories = collect($repositories)->sortBy('name')->toArray();
+                    break;
+                case 'name_desc':
+                    $repositories = collect($repositories)->sortByDesc('name')->toArray();
+                    break;
+                case 'last_commit_asc':
+                    $repositories = collect($repositories)->sortBy('pushed_at')->toArray();
+                    break;
+                case 'last_commit_desc':
+                    $repositories = collect($repositories)->sortByDesc('pushed_at')->toArray();
+                    break;
+            }
+        }
+
+        return view('repositories.index', compact('repositories'));
     }
 }
+
