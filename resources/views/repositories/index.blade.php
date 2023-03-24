@@ -108,6 +108,16 @@
         <input type="text" name="search" id="search" class="form-control" value="{{ request('search') }}">
     </div>
 
+    <div class="form-group">
+        <label for="since">Desde:</label>
+        <input type="date" name="since" id="since" value="{{ request('since') }}" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="until">Hasta:</label>
+        <input type="date" name="until" id="until" value="{{ request('until') }}" class="form-control">
+    </div>
+
     <button type="submit" class="btn btn-primary">Filtrar</button>
 </form>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
 
 
 class GetRepositoryController extends Controller
@@ -28,6 +29,42 @@ class GetRepositoryController extends Controller
 
         $filter = $request->input('filter');
         $search = $request->input('search');
+        $since = $request->input('since');
+        $until = $request->input('until');
+    
+        if ($filter) {
+            switch ($filter) {
+                case 'archived':
+                    $repositories = collect($repositories)->filter(function ($repository) {
+                        return $repository['archived'];
+                    })->toArray();
+                    break;
+                case 'not_archived':
+                    $repositories = collect($repositories)->filter(function ($repository) {
+                        return !$repository['archived'];
+                    })->toArray();
+                    break;
+            }
+        }
+    
+        if ($search) {
+            $repositories = collect($repositories)->filter(function ($repository) use ($search) {
+                return stripos($repository['name'], $search) !== false;
+            })->toArray();
+        }
+    
+        if ($since) {
+            $repositories = collect($repositories)->filter(function ($repository) use ($since) {
+                return Carbon::parse($repository['pushed_at'])->greaterThanOrEqualTo(Carbon::parse($since));
+            })->toArray();
+        }
+    
+        if ($until) {
+            $repositories = collect($repositories)->filter(function ($repository) use ($until) {
+                return Carbon::parse($repository['pushed_at'])->lessThanOrEqualTo(Carbon::parse($until));
+            })->toArray();
+        }
+    
 
         if ($filter) {
             switch ($filter) {
