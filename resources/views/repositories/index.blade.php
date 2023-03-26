@@ -52,14 +52,14 @@
             padding: 5px 10px;
             font-size: 16px;
             border-radius: 3px;
-            background-color: #4CAF50;
+            background-color: red;
             color: white;
             border: none;
             cursor: pointer;
         }
 
         .btn:hover {
-            background-color: #3e8e41;
+            background-color: red;
         }
 
         table {
@@ -74,7 +74,7 @@
         }
 
         th {
-            background-color: #4CAF50;
+            background-color: grey;
             color: white;
         }
 
@@ -164,7 +164,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Filtrar</button>
-    <button type="reset" class="btn btn-secondary">Reiniciar</button>
+    <button type="reset" class="btn btn-red">Reiniciar</button>
 
 </form>
 <div class="card-container">
