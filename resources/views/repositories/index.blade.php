@@ -164,6 +164,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Filtrar</button>
+
 </form>
 <div class="card-container">
     <div class="card">
@@ -171,9 +172,9 @@
     </div>
 </div>
 <table class="table table-striped">
-    
     <thead>
         <tr>
+            <th>#</th>
             <th>Nome</th>
             <th>Descrição</th>
             <th>Linguagem</th>
@@ -183,8 +184,10 @@
         </tr>
     </thead>
     <tbody>
+        @php $i = 1 @endphp
         @foreach ($repositories as $repository)
             <tr>
+                <td>{{ $i++ }}</td>
                 <td>{{ $repository['name'] }}</td>
                 <td>{{ $repository['description'] }}</td>
                 <td>{{ $repository['language'] }}</td>
