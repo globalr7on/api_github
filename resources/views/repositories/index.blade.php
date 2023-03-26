@@ -97,6 +97,8 @@
         }
 
         .card {
+            color: red;
+            
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
             transition: 0.3s;
             width: 40%;
@@ -164,25 +166,10 @@
     <button type="submit" class="btn btn-primary">Filtrar</button>
 </form>
 <div class="card-container">
-        <div class="card">
-            <p>Repositorios Totales: {{ $counts['total'] }}</p>
-        </div>
-        <div class="card">
-            <p>Repositorios Arquivoados: {{ $counts['archived'] }}</p>
-        </div>
-        <div class="card">
-            <p>Repositorios não arquivados: {{ $counts['not_archived'] }}</p>
-        </div>
-        <div class="card">
-            <p>Repositorios Privados: {{ $counts['private'] }}</p>
-        </div>
-        <div class="card">
-            <p>Repositorios Públicos: {{ $counts['public'] }}</p>
-        </div>
-        <div class="card">
-            <p>Resultados de pesquisa: {{ $counts['search'] }}</p>
-        </div>
+    <div class="card">
+        <p>Total de Repositorios: {{ $counts['total'] }}</p>
     </div>
+</div>
 <table class="table table-striped">
     
     <thead>
