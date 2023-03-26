@@ -114,26 +114,7 @@
     <p>CPF:709.413.992-65</p>
     <h6>Version 1.0</h6>
 
-    <div class="card-container">
-        <div class="card">
-            <p>Repositorios Totales: {{ $counts['total'] }}</p>
-        </div>
-        <div class="card">
-            <p>Repositorios Arquivoados: {{ $counts['archived'] }}</p>
-        </div>
-        <div class="card">
-            <p>Repositorios não arquivados: {{ $counts['not_archived'] }}</p>
-        </div>
-        <div class="card">
-            <p>Repositorios Privados: {{ $counts['private'] }}</p>
-        </div>
-        <div class="card">
-            <p>Repositorios Públicos: {{ $counts['public'] }}</p>
-        </div>
-        <div class="card">
-            <p>Resultados de pesquisa: {{ $counts['search'] }}</p>
-        </div>
-    </div>
+    
     
     <form action="{{ route('repositories.index') }}" method="get">
         <div class="form-group">
@@ -182,7 +163,26 @@
 
     <button type="submit" class="btn btn-primary">Filtrar</button>
 </form>
-
+<div class="card-container">
+        <div class="card">
+            <p>Repositorios Totales: {{ $counts['total'] }}</p>
+        </div>
+        <div class="card">
+            <p>Repositorios Arquivoados: {{ $counts['archived'] }}</p>
+        </div>
+        <div class="card">
+            <p>Repositorios não arquivados: {{ $counts['not_archived'] }}</p>
+        </div>
+        <div class="card">
+            <p>Repositorios Privados: {{ $counts['private'] }}</p>
+        </div>
+        <div class="card">
+            <p>Repositorios Públicos: {{ $counts['public'] }}</p>
+        </div>
+        <div class="card">
+            <p>Resultados de pesquisa: {{ $counts['search'] }}</p>
+        </div>
+    </div>
 <table class="table table-striped">
     
     <thead>
