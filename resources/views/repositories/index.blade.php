@@ -164,6 +164,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Filtrar</button>
+    <button type="reset" class="btn btn-secondary">Reiniciar</button>
 
 </form>
 <div class="card-container">
