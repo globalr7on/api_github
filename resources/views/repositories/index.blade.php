@@ -141,8 +141,9 @@
     <button type="submit" class="btn btn-primary">Filtrar</button>
 </form>
 
+
 <table class="table table-striped">
-    <p><b>Total repositorios: {{ $count }} <b></p>
+    
     <thead>
         <tr>
             <th>Nome</th>
@@ -167,6 +168,12 @@
             </tr>
         @endforeach
     </tbody>
+    <p>Repositorios Totales: {{ $counts['total'] }}</p>
+    <p>Repositorios Arquivoados: {{ $counts['archived'] }}</p>
+    <p>Repositorios não arquivados: {{ $counts['not_archived'] }}</p>
+    <p>Repositorios Privados: {{ $counts['private'] }}</p>
+    <p>Repositorios Públicos: {{ $counts['public'] }}</p>
+    <p>Resultados de pesquisa: {{ $counts['search'] }}</p>
 </table>
 </body>
 </html>
