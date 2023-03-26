@@ -129,12 +129,12 @@
     </div>
 
     <div class="form-group">
-        <label for="since">Desde:</label>
+        <label for="since">Mostrar repositorios Desde:</label>
         <input type="date" name="since" id="since" value="{{ request('since') }}" class="form-control">
     </div>
 
     <div class="form-group">
-        <label for="until">Hasta:</label>
+        <label for="until">Mostrar repositorios Hasta:</label>
         <input type="date" name="until" id="until" value="{{ request('until') }}" class="form-control">
     </div>
 
