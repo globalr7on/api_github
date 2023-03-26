@@ -48,7 +48,16 @@
             border-radius: 3px;
         }
 
-        .btn {
+        .btn-filter {
+            padding: 5px 10px;
+            font-size: 16px;
+            border-radius: 3px;
+            background-color: #339FFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-reset {
             padding: 5px 10px;
             font-size: 16px;
             border-radius: 3px;
@@ -163,8 +172,8 @@
         <input type="date" name="until" id="until" value="{{ request('until') }}" class="form-control">
     </div>
 
-    <button type="submit" class="btn btn-primary">Filtrar</button>
-    <button type="reset" class="btn btn-red">Reiniciar</button>
+    <button type="submit" class="btn btn-filter">Filtrar</button>
+    <button type="reset" class="btn btn-reset">Reiniciar</button>
 
 </form>
 <div class="card-container">
