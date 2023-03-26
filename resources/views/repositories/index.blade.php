@@ -162,8 +162,6 @@
                 @else
                 <td>Público</td>
                 @endif
-
-                
                 <td>{{ \Carbon\Carbon::parse($repository['pushed_at'])->format('d/m/Y H:i:s') }}</td>
             </tr>
         @endforeach
