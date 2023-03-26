@@ -52,7 +52,7 @@
             padding: 5px 10px;
             font-size: 16px;
             border-radius: 3px;
-            background-color: #339FFF;
+            background-color: #0663B5;
             color: white;
             border: none;
             cursor: pointer;
@@ -61,14 +61,17 @@
             padding: 5px 10px;
             font-size: 16px;
             border-radius: 3px;
-            background-color: red;
+            background-color: #BB0404;
             color: white;
             border: none;
             cursor: pointer;
         }
 
-        .btn:hover {
-            background-color: red;
+        .btn-filter:hover {
+            background-color: #268CE7;
+        }
+        .btn-reset:hover {
+            background-color: #F11C1C;
         }
 
         table {
