@@ -84,6 +84,14 @@
 
     <form action="{{ route('repositories.index') }}" method="get">
         <div class="form-group">
+            <label for="private">Privado ou Público:</label>
+            <select name="private" id="private" class="form-control">
+                <option value="">Nenhum</option>
+                <option value="private" @if(request('private') === 'private') selected @endif>Privado</option>
+                <option value="public" @if(request('private') === 'public') selected @endif>Público</option>
+            </select>
+        </div>    
+        <div class="form-group">
             <label for="filter">Filtrar por:</label>
             <select name="filter" id="filter" class="form-control">
                 <option value="">Nenhum</option>
@@ -102,9 +110,10 @@
             <option value="last_commit_desc" @if(request('sort') === 'last_commit_desc') selected @endif>Último commit (novos primeiro)</option>
         </select>
     </div>
-
+    
+    
     <div class="form-group">
-        <label for="search">Pesquisar por:</label>
+        <label for="search">Pesquisar por nome ou linguagem :</label>
         <input type="text" name="search" id="search" class="form-control" value="{{ request('search') }}">
     </div>
 
@@ -126,6 +135,8 @@
         <tr>
             <th>Nome</th>
             <th>Descrição</th>
+            <th>Linguagem</th>
+            <th>Tipo</th>
             <th>Data do último commit</th>
         </tr>
     </thead>
@@ -134,6 +145,14 @@
             <tr>
                 <td>{{ $repository['name'] }}</td>
                 <td>{{ $repository['description'] }}</td>
+                <td>{{ $repository['language'] }}</td>
+                @if ($repository['private'] == 1)
+                <td>Privado</td>
+                @else
+                <td>Público</td>
+                @endif
+
+                
                 <td>{{ \Carbon\Carbon::parse($repository['pushed_at'])->format('d/m/Y H:i:s') }}</td>
             </tr>
         @endforeach

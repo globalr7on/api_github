@@ -31,6 +31,10 @@ class GetRepositoryController extends Controller
         $search = $request->input('search');
         $since = $request->input('since');
         $until = $request->input('until');
+        $language = $request->input('language');
+        $is_private = $request->input('private');
+        
+        
     
         if ($filter) {
             switch ($filter) {
@@ -46,13 +50,27 @@ class GetRepositoryController extends Controller
                     break;
             }
         }
-    
+        if ($is_private) {
+            switch ($is_private) {
+                case 'private':
+                    $repositories = collect($repositories)->filter(function ($repository) {
+                        return $repository['private'];
+                    })->toArray();
+                    break;
+                case 'public':
+                    $repositories = collect($repositories)->filter(function ($repository) {
+                        return !$repository['private'];
+                    })->toArray();
+                    break;
+            }
+        }
+
         if ($search) {
             $repositories = collect($repositories)->filter(function ($repository) use ($search) {
-                return stripos($repository['name'], $search) !== false;
+                return stripos($repository['name'], $search) !== false || stripos($repository['language'], $search) !== false;
             })->toArray();
         }
-    
+
         if ($since) {
             $repositories = collect($repositories)->filter(function ($repository) use ($since) {
                 return Carbon::parse($repository['pushed_at'])->greaterThanOrEqualTo(Carbon::parse($since));
@@ -64,28 +82,7 @@ class GetRepositoryController extends Controller
                 return Carbon::parse($repository['pushed_at'])->lessThanOrEqualTo(Carbon::parse($until));
             })->toArray();
         }
-    
 
-        if ($filter) {
-            switch ($filter) {
-                case 'archived':
-                    $repositories = collect($repositories)->filter(function ($repository) {
-                        return $repository['archived'];
-                    })->toArray();
-                    break;
-                case 'not_archived':
-                    $repositories = collect($repositories)->filter(function ($repository) {
-                        return !$repository['archived'];
-                    })->toArray();
-                    break;
-            }
-        }
-
-        if ($search) {
-            $repositories = collect($repositories)->filter(function ($repository) use ($search) {
-                return stripos($repository['name'], $search) !== false;
-            })->toArray();
-        }
 
         $sort = $request->input('sort');
 
