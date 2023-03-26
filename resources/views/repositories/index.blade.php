@@ -85,6 +85,27 @@
         tr:hover {
             background-color: #ddd;
         }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 2px 16px;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 40%;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            flex: 1 1 200px;
+            max-width: 200px;
+        }
     </style>
 </head>
 <body>
@@ -93,6 +114,27 @@
     <p>CPF:709.413.992-65</p>
     <h6>Version 1.0</h6>
 
+    <div class="card-container">
+        <div class="card">
+            <p>Repositorios Totales: {{ $counts['total'] }}</p>
+        </div>
+        <div class="card">
+            <p>Repositorios Arquivoados: {{ $counts['archived'] }}</p>
+        </div>
+        <div class="card">
+            <p>Repositorios não arquivados: {{ $counts['not_archived'] }}</p>
+        </div>
+        <div class="card">
+            <p>Repositorios Privados: {{ $counts['private'] }}</p>
+        </div>
+        <div class="card">
+            <p>Repositorios Públicos: {{ $counts['public'] }}</p>
+        </div>
+        <div class="card">
+            <p>Resultados de pesquisa: {{ $counts['search'] }}</p>
+        </div>
+    </div>
+    
     <form action="{{ route('repositories.index') }}" method="get">
         <div class="form-group">
             <label for="private">Privado ou Público:</label>
@@ -141,7 +183,6 @@
     <button type="submit" class="btn btn-primary">Filtrar</button>
 </form>
 
-
 <table class="table table-striped">
     
     <thead>
@@ -150,6 +191,7 @@
             <th>Descrição</th>
             <th>Linguagem</th>
             <th>Tipo</th>
+            <th>Arquivado</th>
             <th>Data do último commit</th>
         </tr>
     </thead>
@@ -164,16 +206,15 @@
                 @else
                 <td>Público</td>
                 @endif
+                @if ($repository['archived'] == 1)
+                <td>Sim</td>
+                @else
+                <td>Não</td>
+                @endif
                 <td>{{ \Carbon\Carbon::parse($repository['pushed_at'])->format('d/m/Y H:i:s') }}</td>
             </tr>
         @endforeach
     </tbody>
-    <p>Repositorios Totales: {{ $counts['total'] }}</p>
-    <p>Repositorios Arquivoados: {{ $counts['archived'] }}</p>
-    <p>Repositorios não arquivados: {{ $counts['not_archived'] }}</p>
-    <p>Repositorios Privados: {{ $counts['private'] }}</p>
-    <p>Repositorios Públicos: {{ $counts['public'] }}</p>
-    <p>Resultados de pesquisa: {{ $counts['search'] }}</p>
 </table>
 </body>
 </html>
