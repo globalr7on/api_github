@@ -27,6 +27,8 @@ class GetRepositoryController extends Controller
             return !$repository['fork'];
         })->toArray();
 
+        $count = count($repositories);
+
         $filter = $request->input('filter');
         $search = $request->input('search');
         $since = $request->input('since');
@@ -103,7 +105,7 @@ class GetRepositoryController extends Controller
             }
         }
 
-        return view('repositories.index', compact('repositories'));
+        return view('repositories.index', compact('repositories', 'count'));
     }
 }
 

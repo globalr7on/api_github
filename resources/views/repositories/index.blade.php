@@ -142,6 +142,7 @@
 </form>
 
 <table class="table table-striped">
+    <p><b>Total repositorios: {{ $count }} <b></p>
     <thead>
         <tr>
             <th>Nome</th>
