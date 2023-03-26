@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>App para obter os repositorios no github</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -34,6 +34,14 @@
 
         select,
         input[type="text"] {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        select,
+        input[type="date"] {
             padding: 5px;
             font-size: 16px;
             border: 1px solid #ccc;
@@ -81,6 +89,9 @@
 </head>
 <body>
     <h1>Meus repositórios no GitHub</h1>
+    <p>Programado por: Victor Hugo Ramirez Henriquez</p>
+    <p>CPF:709.413.992-65</p>
+    <h6>Version 1.0</h6>
 
     <form action="{{ route('repositories.index') }}" method="get">
         <div class="form-group">
