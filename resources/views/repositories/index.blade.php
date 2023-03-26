@@ -86,7 +86,7 @@
         }
 
         th {
-            background-color: grey;
+            background-color: #0663B5;
             color: white;
         }
 
